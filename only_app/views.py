@@ -9,6 +9,10 @@ from only_app.forms import GitLink
 def index(request):
     return render(request, 'Temp/main.html')
 
+def openTer(request):
+    return render(request, 'Temp/term.html')
+
+
 def ansible(request):
     #os.system("ls")
     return HttpResponse("running")
@@ -20,6 +24,6 @@ def getTer(request):
             link = gitlink.cleaned_data.get('link')
             pname= gitlink.cleaned_data.get('pname')
     subprocess.call(["git","clone",link])
-    subprocess.call(["cd",pname])
+    os.chdir(pname)
     subprocess.call(["ls"])
-    return HttpResponse("running")
+    return render

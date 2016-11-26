@@ -14,5 +14,8 @@ urlpatterns = [
     url(r'^yo1$', views.ansible, name='ansible'),
 
     #url
-    url(r'^terminal$', views.getTer, name='getTer'),
+    url(r'^term$', views.getTer, name='getTer'),
+
+    #url
+    url(r'^terminal$', views.openTer, name='openTer'),
     ]
