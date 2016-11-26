@@ -5,10 +5,8 @@ import digitalocean
 
 class my_server(object):
 
-	# api token 
+	# api token
 	api_token="beb074d0c9a88caac568a705e75d600e0e0c49cebea2e774e79ea42068a9191b"
-
-
 	#3 server create
 	def server_create(self,s_name,s_image='ubuntu-14-04-x64',s_size_slug='512mb',s_region='nyc2'):
 		self.droplet = digitalocean.Droplet(token=api_token,

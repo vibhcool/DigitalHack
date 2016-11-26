@@ -1,7 +1,9 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse,HttpResponseRedirect
 import os
 import subprocess
+
+from django.urls import reverse
 
 from .api_do import my_server
 from only_app.forms import GitLink,IP
@@ -13,12 +15,18 @@ def openTer(request):
     if request.method == 'POST':
         ip=IP(request.POST)
         if ip.is_valid():
-            input=ip.cleaned_data.get('input')
-            inp=input.split()
-            subprocess.call(inp)
+
+            inp=ip.cleaned_data.get('inp')
+
+            inp=inp.split()
+            p=subprocess.Popen(inp, stdout=subprocess.PIPE)
+            out, err = p.communicate()
+            return render(request, 'Temp/term.html', {"out":out})
         else:
             return HttpResponse("Form not valid")
-    return render(request, 'Temp/term.html')
+    else:
+        return render(request, 'Temp/term.html', {"out": " "})
+
 
 
 def ansible(request):
@@ -36,4 +44,4 @@ def getTer(request):
     subprocess.call(["git","clone",link])
     os.chdir(pname)
     subprocess.call(["ls"])
-    return render
+    return HttpResponseRedirect(reverse('only_app:openTer'))
