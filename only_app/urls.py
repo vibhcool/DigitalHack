@@ -11,6 +11,6 @@ urlpatterns = [
     url(r'^$', views.index, name='index'),
 
     #url for home-page:
-    url(r'^$', views.ansible, name='ansible'),
+    url(r'^yo1$', views.ansible, name='ansible'),
 
     ]
