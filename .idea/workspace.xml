@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cd356604-a582-494d-884d-9a411d1f2955" name="Default" comment="">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/api_do.py" afterPath="$PROJECT_DIR$/only_app/api_do.py" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/info_crawler" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/only_app/templates/Temp/main.html" afterPath="$PROJECT_DIR$/only_app/templates/Temp/main.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/only_app/urls.py" afterPath="$PROJECT_DIR$/only_app/urls.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/only_app/views.py" afterPath="$PROJECT_DIR$/only_app/views.py" />
     </list>
     <ignored path="DigitalHack.iws" />
     <ignored path=".idea/workspace.xml" />
