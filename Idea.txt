@@ -1,0 +1,3 @@
+We are building a web app that will help developer to:-
+1) travel freely throughout the world and access and continue working on his projects using any computing device.
+2) deploy any web or cli based-application on DigitalOcean in one click from any git, docker repository or existing snapshot and work on it.

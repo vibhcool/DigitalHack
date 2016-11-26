@@ -10,7 +10,9 @@ urlpatterns = [
     #url for home-page:
     url(r'^$', views.index, name='index'),
 
-    #url for home-page:
+    #url for
     url(r'^yo1$', views.ansible, name='ansible'),
 
+    #url
+    url(r'^terminal$', views.getTer, name='getTer'),
     ]
