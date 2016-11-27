@@ -17,10 +17,16 @@ def openTer(request):
         if ip.is_valid():
 
             inp=ip.cleaned_data.get('inp')
-
+            out=" "
             inp=inp.split()
-            p=subprocess.Popen(inp, stdout=subprocess.PIPE)
-            out, err = p.communicate()
+            if inp[0]=="cd":
+                os.chdir(inp[1])
+            #elif (inp[0]=="gedit")or(inp[0]=="vim")or(inp[0]=="nano"):
+
+            else:
+                p=subprocess.Popen(inp, stdout=subprocess.PIPE)
+                out, err = p.communicate()
+
             return render(request, 'Temp/term.html', {"out":out})
         else:
             return HttpResponse("Form not valid")
