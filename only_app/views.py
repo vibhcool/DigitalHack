@@ -6,7 +6,7 @@ import subprocess
 from django.urls import reverse
 
 from .api_do import my_server
-from only_app.forms import GitLink,IP
+from only_app.forms import GitLink,IP,Saver
 
 def index(request):
     return render(request, 'Temp/main.html')
@@ -21,8 +21,12 @@ def openTer(request):
             inp=inp.split()
             if inp[0]=="cd":
                 os.chdir(inp[1])
-            #elif (inp[0]=="gedit")or(inp[0]=="vim")or(inp[0]=="nano"):
-
+            elif (inp[0]=="gedit")or(inp[0]=="vim")or(inp[0]=="nano"):
+                #pop=subprocess.Popen("cat < "+inp[1])
+                file=open(inp[1])
+                pop=file.read()
+                file.close()
+                return render(request, 'Temp/editer.html',{"fnm":inp[1],"pop":pop})
             else:
                 p=subprocess.Popen(inp, stdout=subprocess.PIPE)
                 out, err = p.communicate()
@@ -51,3 +55,22 @@ def getTer(request):
     os.chdir(pname)
     subprocess.call(["ls"])
     return HttpResponseRedirect(reverse('only_app:openTer'))
+
+"""
+def editer(request):
+    p = subprocess.Popen(, stdout=subprocess.PIPE)
+
+    return render(request, 'Temp/editer.html')
+"""
+
+def editsave(request):
+    if request.method == 'POST':
+        s= Saver(request.POST)
+        if s.is_valid():
+            wrt=s.cleaned_data.get('out')
+            fnm=s.cleaned_data.get('nm')
+            file=open(fnm,'w')
+            file.write(wrt)
+            file.close()
+
+    return render(request, 'Temp/term.html', {"out": " "})

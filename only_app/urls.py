@@ -18,4 +18,7 @@ urlpatterns = [
 
     #url
     url(r'^terminal$', views.openTer, name='openTer'),
+
+    #url
+    url(r'^editsave$', views.editsave, name='editsave'),
     ]
