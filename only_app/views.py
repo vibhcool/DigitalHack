@@ -48,7 +48,7 @@ def getTer(request):
         gitlink=GitLink(request.POST)
         if gitlink.is_valid():
             link = gitlink.cleaned_data.get('link')
-            pname= gitlink.cleaned_data.get('pname')
+	            pname= gitlink.cleaned_data.get('pname')
         else:
             return HttpResponse("Form not valid")
     subprocess.call(["git","clone",link])
@@ -61,6 +61,28 @@ def editer(request):
     p = subprocess.Popen(, stdout=subprocess.PIPE)
 
     return render(request, 'Temp/editer.html')
+
+def getTer(request):
+    #server code
+    serv=my_server()
+    if(i==1):
+        #new server         
+        serv.server_create()
+        did=serv.droplet.id #to save in database, this is droplet id
+        serv.server_on()
+        subprocess.call(["ssh","root@",link])
+    elif(i==2):
+        #restore server
+    #to here
+    if request.method == 'POST':
+        gitlink=GitLink(request.POST)
+        if gitlink.is_valid():
+            link = gitlink.cleaned_data.get('link')
+            pname= gitlink.cleaned_data.get('pname')
+    subprocess.call(["git","clone",link])
+    os.chdir(pname)
+    subprocess.call(["ls"])
+    return render
 """
 
 def editsave(request):
