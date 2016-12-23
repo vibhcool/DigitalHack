@@ -29,18 +29,6 @@
 
 	</head>
 	<body>
-hehehehehehehehehehehehehehehehehehehhehehehehehehehehehehehehehehehehehehheheheheheheheheheheheheheheheheheheh
-{{ request.body }}
-{{ lo }}
-hehehehehehehehehehehehehehehehehehehhehehehehehehehehehehehehehehehehehehheheheheheheheheheheheheheheheheheheh
-
-
-
-
-
-
-
-
 <!--login modal-->
 <header id="top" class="header">
         <div class="text-vertical-center">
@@ -53,30 +41,7 @@ hehehehehehehehehehehehehehehehehehehhehehehehehehehehehehehehehehehehehehhehehe
 
 
       <div class="modal-body">
-          <form class="form col-md-12 center-block" method="POST" action="{% url 'only_app:getTer' %}">
-			{% csrf_token %}
-            <div class="form-group">
-              <input type="text" class="form-control input-lg" name="link" placeholder="Github clone link" required>
-            </div>
-            <div class="form-group">
-              <input type="text" class="form-control input-lg" name="pname" placeholder="Github project name" required>
-            </div>
-              <!--
-            <div class="form-group">
-              <input type="text" class="form-control input-lg" name="Username" placeholder="User Name" required>
-            </div>
-            <div class="form-group">
-              <input type="text" class="form-control input-lg" name="ip" placeholder="IP-address" required>
-            </div>
-            <div class="form-group">
-              <input type="password" class="form-control input-lg" name="pwd" placeholder="Password" required>
-            </div>-->
-            <div class="form-group">
-              <button class="btn btn-primary btn-lg btn-block">Submit</button>
-              <!--<span class="pull-right"><a href="signup.html">Register</a></span>
-			  <span><a href="#">Need help?</a></span>-->
-            </div>
-          </form>
+          <a href="{{login_link}}">Login</a>
       </div>
 
 

@@ -21,4 +21,7 @@ urlpatterns = [
 
     #url
     url(r'^editsave$', views.editsave, name='editsave'),
+    
+    #url for login:
+    url(r'^login$', views.login, name='login')    
     ]

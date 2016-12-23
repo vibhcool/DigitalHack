@@ -2,14 +2,26 @@ from django.shortcuts import render
 from django.http import HttpResponse,HttpResponseRedirect
 import os
 import subprocess
-
+import json
 from django.urls import reverse
 
 from .api_do import my_server
 from only_app.forms import GitLink,IP,Saver
 
 def index(request):
-    return render(request, 'Temp/main.html')
+    auth = request.body
+    access_token = request.GET.get('access_token')
+    if access_token == None:
+        return HttpResponseRedirect(reverse('only_app:login'))
+    else:
+        request.session['access_token'] = access_token
+    
+    return render( request, 'Temp/main.html')
+
+def login(request):
+    login_link=my_server.login_link
+
+    return render(request, 'Temp/login.html', {'login_link':login_link})
 
 def openTer(request):
     if request.method == 'POST':
@@ -48,7 +60,7 @@ def getTer(request):
         gitlink=GitLink(request.POST)
         if gitlink.is_valid():
             link = gitlink.cleaned_data.get('link')
-	            pname= gitlink.cleaned_data.get('pname')
+            pname= gitlink.cleaned_data.get('pname')
         else:
             return HttpResponse("Form not valid")
     subprocess.call(["git","clone",link])

@@ -8,6 +8,8 @@ class my_server(object):
 
     ss=['ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDn8hGrTD8j3C69n1WC96cl6n8oGV1psYXzh4jZLFd9oDikhlp/bT8BzFdJ5aNdo3iYmG4LggaOZviez+oeabLBNrk4v+FvSDdZvNbjA6GbQUV6LZB2HWhyAgcN2chpNVdcqiWJZS5cdVX1u+QMVcejboEyEzkoEAv1XjUQoOttgUqKyiTNOfzhZtIkcygZVQY+r9HI03HuUoAFXlToYstt0X5banr4dd7LlJlvSPz99aHWgjWz39mAEOOIZKBEaqevE0OXil30FEL652xzXEM5WtBmqVBPY67d1PlWMf5xxB5Cp1+GtX6gFaX/TDyaOK/2wwUFj70hNcVAdIxF+VLR vibhcool@localhost.localdomain']        
 
+    login_link='https://cloud.digitalocean.com/v1/oauth/authorize?response_type=code&client_id=63cd9961d08cc704e734550b786e162c19a75c36269c64f752b411ba76c77155&redirect_uri=http://digitalhack.pythonanywhere.com/&scope=read'
+
     #3 server create
     def server_create(self,s_name,s_image='ubuntu-14-04-x64',s_size_slug='512mb',s_region='nyc2'):
         self.droplet = digitalocean.Droplet(token=self.api_token,
@@ -51,3 +53,5 @@ class my_server(object):
     def server_restore(self,):
         print(self.droplet.get_snapshots())
 
+    def server_get_ip(self,):
+        pass
