@@ -8,20 +8,39 @@ from django.urls import reverse
 from .api_do import my_server
 from only_app.forms import GitLink,IP,Saver
 
+serv=my_server()
+
 def index(request):
     auth = request.body
-    access_token = request.GET.get('access_token')
+    access_token = request.GET.get('code')
+    
     if access_token == None:
         return HttpResponseRedirect(reverse('only_app:login'))
     else:
+        serv.api_token=access_token
         request.session['access_token'] = access_token
     
     return render( request, 'Temp/main.html')
 
+def control_panel( request):
+    
+    #power-on existing or new server    
+    if request.GET.get( 'droplet')!=None:
+        d_id = request.GET.get( 'code')
+        serv.open_server( d_id)
+    else:
+        serv.new_server()
+    serv.server_on()
+
+    #authenticate
+    link = serv.server_get_ip
+    subprocess.call( ["ssh", "root@", link ])
+
+
 def login(request):
     login_link=my_server.login_link
 
-    return render(request, 'Temp/login.html', {'login_link':login_link})
+    return render(request, 'Temp/login.html', {'login_link': login_link })
 
 def openTer(request):
     if request.method == 'POST':
@@ -87,15 +106,17 @@ def getTer(request):
         #restore server
     #to here
     if request.method == 'POST':
-        gitlink=GitLink(request.POST)
-        if gitlink.is_valid():
-            link = gitlink.cleaned_data.get('link')
-            pname= gitlink.cleaned_data.get('pname')
-    subprocess.call(["git","clone",link])
-    os.chdir(pname)
-    subprocess.call(["ls"])
+        if gitlink!=None            
+            gitlink=GitLink(request.POST)
+            if gitlink.is_valid():
+                link = gitlink.cleaned_data.get('link')
+                pname= gitlink.cleaned_data.get('pname')
+            subprocess.call(["git","clone",link])
+            os.chdir(pname)
+            subprocess.call(["ls"])
     return render
 """
+
 
 def editsave(request):
     if request.method == 'POST':
